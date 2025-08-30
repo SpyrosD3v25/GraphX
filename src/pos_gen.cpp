@@ -16,8 +16,18 @@ int pos_gen::getRandomLength() { return std::rand() % pos_gen::max_length + 1; }
 int pos_gen::getRandomDir() { return std::rand() % pos_gen::max_dir + 1; }
 
 std::array<int, 3> pos_gen::genFrom(Graph graph, Node src) {
-    std::srand(std::time(NULL));
-
+    // 1 Pick a random direction based on dir. 
+    // Example: 0 means in the x axis we substract
+    //          1 means in the x axis we add
+    // etc...
+    // and we only chane ONE axis as you can see
+    // That, alongside with the getClosestPos() makes it so that
+    // No two edges collapse 
+    // Then:
+    // 2 Pick a random step length (1 to max_length)
+    // 3 Move from the source node in that direction by that length
+    // 4 Check distance to all existing nodes; if too close, try again
+    // 5 Return the new position when it is far enough from other nodes
     int length = getRandomLength();
     int dir = getRandomDir();
 
