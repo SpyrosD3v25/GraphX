@@ -28,7 +28,10 @@ std::array<int, 3> pos_gen::genFrom(Graph graph, Node src) {
     // 3 Move from the source node in that direction by that length
     // 4 Check distance to all existing nodes; if too close, try again
     // 5 Return the new position when it is far enough from other nodes
-    int length = getRandomLength();
+    int x_length = getRandomLength();
+    int y_length = getRandomLength();
+    int z_length = getRandomLength();
+
     int dir = getRandomDir();
 
     std::array<int, 3> next_pos = src.get_pos();
@@ -37,22 +40,22 @@ std::array<int, 3> pos_gen::genFrom(Graph graph, Node src) {
     do {
         switch (dir) {
             case 1:
-                next_pos[0] -= length;
+                next_pos[0] -= x_length;
                 break;
             case 2:
-                next_pos[0] += length;
+                next_pos[0] += x_length;
                 break;
             case 3:
-                next_pos[1] -= length;
+                next_pos[1] -= y_length;
                 break;
             case 4:
-                next_pos[1] += length;
+                next_pos[1] += y_length;
                 break;
             case 5:
-                next_pos[2] -= length;
+                next_pos[2] -= z_length;
                 break;
             case 6:
-                next_pos[2] += length;
+                next_pos[2] += z_length;
                 break;
         }
         curClosestPos = getClosestPos(graph, next_pos);
@@ -60,7 +63,7 @@ std::array<int, 3> pos_gen::genFrom(Graph graph, Node src) {
 
     return next_pos;
 }
-//PQ = d = √ [(x2 – x1)2 + (y2 – y1)2 + (z2 – z1)2].
+
 float d(std::array<int, 3> from, std::array<int, 3>to) {
     return sqrt( pow( abs(static_cast<double>(from[0] - to[0])  ), 2) 
                + pow( abs(static_cast<double>(from[1] - to[1])  ), 2) 

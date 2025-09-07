@@ -8,13 +8,13 @@ CXXFLAGS = -Wall -g -std=c++11 -Iinclude
 LIBRARY = libgraphx.a
 
 # Source files for the library
-LIB_SRC = src/graph.cpp src/graphics.cpp src/node.cpp src/pos_gen.cpp
+LIB_SRC = src/graph.cpp src/graphics.cpp src/node.cpp src/pos_gen.cpp src/config.cpp
 
 # Object files for the library
 LIB_OBJ = $(LIB_SRC:.cpp=.o)
 
 # Source file for the main program
-MAIN_SRC = main.cpp
+MAIN_SRC = src/main.cpp
 
 # Target for the final executable
 TARGET = op
