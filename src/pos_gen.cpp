@@ -9,7 +9,7 @@
 #include <cmath>
 
 int pos_gen::max_length = 7;
-int pos_gen::max_dir = 6;
+int pos_gen::max_dir = 2;
 
 int pos_gen::getRandomLength() { return std::rand() % pos_gen::max_length + 1; }
 
@@ -32,29 +32,37 @@ std::array<int, 3> pos_gen::genFrom(Graph graph, Node src) {
     int y_length = getRandomLength();
     int z_length = getRandomLength();
 
-    int dir = getRandomDir();
+    int x_dir = getRandomDir();
+    int y_dir = getRandomDir();
+    int z_dir = getRandomDir();
 
     std::array<int, 3> next_pos = src.get_pos();
     float curClosestPos;
 
     do {
-        switch (dir) {
+        switch (x_dir) {
             case 1:
                 next_pos[0] -= x_length;
                 break;
             case 2:
                 next_pos[0] += x_length;
                 break;
-            case 3:
+        }
+
+        switch (y_dir) {
+            case 1:
                 next_pos[1] -= y_length;
                 break;
-            case 4:
+            case 2:
                 next_pos[1] += y_length;
                 break;
-            case 5:
+        }
+
+        switch (z_dir) {
+            case 1:
                 next_pos[2] -= z_length;
                 break;
-            case 6:
+            case 2:
                 next_pos[2] += z_length;
                 break;
         }
