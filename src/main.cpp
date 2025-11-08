@@ -70,4 +70,9 @@ TODO:
 5) Consider for live updates (elite) -> 1) required for this
 6) Config system
 7) Service Provider instead of singleton
+8) Add algorithms visualization
+    - Add coloring "current" node
+    - Add algorithms
+    - Interface for the user to request an algo
+
 */
